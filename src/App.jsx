@@ -6,15 +6,11 @@ function App() {
   const [isCharIncluded, setIsCharIncluded] = useState(false);
   const [isNumIncluded, setIsNumIncluded] = useState(false);
 
-  // useEffect(
-  //   () => {
-  //     setPassword(() => generatePassword(length));
-  //   },
-  //   [isCharIncluded, isNumIncluded, length],
-  //   [],
-  // );
+  useEffect(() => {
+    setPassword(() => generatePassword());
+  }, [length, isNumIncluded, isCharIncluded]);
 
-  function generatePassword(length) {
+  function generatePassword() {
     let pass = "";
     const alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const specialChars = "!@#$%^&*";
@@ -70,9 +66,7 @@ function App() {
         />
         <label htmlFor="Special Charactesr">Special Characters</label>
       </div>
-      <button onClick={() => setPassword(() => generatePassword(length))}>
-        Generate
-      </button>
+      <button onClick={() => setPassword(generatePassword)}>Generate</button>
     </div>
   );
 }
