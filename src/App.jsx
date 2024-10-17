@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 function App() {
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(8);
   const [isCharIncluded, setIsCharIncluded] = useState(false);
   const [isNumIncluded, setIsNumIncluded] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+  const passwordRef = useRef(null);
 
-  useEffect(() => {
-    setPassword(() => generatePassword());
-  }, [length, isNumIncluded, isCharIncluded]);
-
-  function generatePassword() {
+  const generatePassword = useCallback(() => {
     let pass = "";
     const alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     const specialChars = "!@#$%^&*";
@@ -26,6 +24,17 @@ function App() {
     }
     // console.log(pass);
     return pass;
+  }, [length, isNumIncluded, isCharIncluded]);
+
+  useEffect(() => {
+    setPassword(() => generatePassword());
+    setIsCopied(false);
+  }, [generatePassword]);
+
+  function handleCopyToClipboard() {
+    window.navigator.clipboard.writeText(password);
+    setIsCopied(true);
+    passwordRef.current.select();
   }
 
   return (
@@ -38,8 +47,11 @@ function App() {
           value={password}
           placeholder="Password"
           readOnly
+          ref={passwordRef}
         />
-        <button>Copy</button>
+        <button onClick={handleCopyToClipboard}>
+          {isCopied ? "Copied" : "Copy"}
+        </button>
       </div>
       <div>
         <input
