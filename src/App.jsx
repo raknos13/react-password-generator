@@ -38,9 +38,9 @@ function App() {
   }
 
   return (
-    <div className="text-xl">
-      Password Generator
-      <div>
+    <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-8">
+      <h1 className="text-2xl font-bold text-gray-800">Password Generator</h1>
+      <div className="flex gap-2 mt-4">
         <input
           type="text"
           name="password"
@@ -48,12 +48,17 @@ function App() {
           placeholder="Password"
           readOnly
           ref={passwordRef}
+          className="border p-2 w-64 rounded-md focus:outline-none"
         />
-        <button onClick={handleCopyToClipboard}>
+        <button
+          onClick={handleCopyToClipboard}
+          className={`bg-blue-500 text-white px-4 py-2 rounded-md ${isCopied ? "bg-green-500" : ""}`}
+        >
           {isCopied ? "Copied" : "Copy"}
         </button>
       </div>
-      <div>
+      <div className="flex gap-2">
+        <label htmlFor="length">Length: {length}</label>
         <input
           type="range"
           name="length"
@@ -62,7 +67,6 @@ function App() {
           max="14"
           onChange={(e) => setLength(e.target.value)}
         />
-        <label htmlFor="length">Length: {length}</label>
         <input
           type="checkbox"
           name="Numbers"
