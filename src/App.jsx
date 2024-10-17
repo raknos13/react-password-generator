@@ -89,7 +89,10 @@ function App() {
         </div>
       </div>
       <button
-        onClick={() => setPassword(generatePassword)}
+        onClick={() => {
+          setPassword(generatePassword);
+          setIsCopied(false);
+        }}
         className="mt-4 bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-md text-white"
       >
         Generate
