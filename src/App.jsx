@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-sky-50 flex flex-col items-center justify-center p-8">
-      <h1 className="text-2xl font-bold text-gray-800">Password Generator</h1>
+      <h1 className="text-3xl font-bold text-gray-800">Password Generator</h1>
       <div className="flex gap-2 mt-4">
         <input
           type="text"
@@ -52,37 +52,48 @@ function App() {
         />
         <button
           onClick={handleCopyToClipboard}
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md ${isCopied ? "bg-green-500" : ""}`}
+          className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md ${isCopied ? "bg-green-500" : ""}`}
         >
           {isCopied ? "Copied" : "Copy"}
         </button>
       </div>
-      <div className="flex gap-2">
-        <label htmlFor="length">Length: {length}</label>
-        <input
-          type="range"
-          name="length"
-          value={length}
-          min="8"
-          max="14"
-          onChange={(e) => setLength(e.target.value)}
-        />
-        <input
-          type="checkbox"
-          name="Numbers"
-          checked={isNumIncluded}
-          onChange={() => setIsNumIncluded(!isNumIncluded)}
-        />
-        <label htmlFor="Numbers">Numbers</label>
-        <input
-          type="checkbox"
-          name="Special Characters"
-          checked={isCharIncluded}
-          onChange={() => setIsCharIncluded(!isCharIncluded)}
-        />
-        <label htmlFor="Special Charactesr">Special Characters</label>
+      <div className="flex flex-col gap-4 mt-4">
+        <div className="flex items-center gap-2">
+          <label htmlFor="length">Length: {length}</label>
+          <input
+            type="range"
+            name="length"
+            value={length}
+            min="8"
+            max="14"
+            onChange={(e) => setLength(e.target.value)}
+          />
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="Numbers"
+            checked={isNumIncluded}
+            onChange={() => setIsNumIncluded(!isNumIncluded)}
+          />
+          <label htmlFor="Numbers">Numbers</label>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="Special Characters"
+            checked={isCharIncluded}
+            onChange={() => setIsCharIncluded(!isCharIncluded)}
+          />
+          <label htmlFor="Special Charactesr">Special Characters</label>
+        </div>
       </div>
-      <button onClick={() => setPassword(generatePassword)}>Generate</button>
+      <button
+        onClick={() => setPassword(generatePassword)}
+        className="mt-4 bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-md text-white"
+      >
+        Generate
+      </button>
     </div>
   );
 }
