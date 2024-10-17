@@ -52,7 +52,7 @@ function App() {
         />
         <button
           onClick={handleCopyToClipboard}
-          className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md ${isCopied ? "bg-green-500" : ""}`}
+          className={`bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md ${isCopied ? "bg-green-500 hover:bg-green-600" : "px-6"}`}
         >
           {isCopied ? "Copied" : "Copy"}
         </button>
