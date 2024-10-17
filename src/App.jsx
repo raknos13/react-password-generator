@@ -65,7 +65,7 @@ function App() {
             name="length"
             value={length}
             min="8"
-            max="14"
+            max="24"
             onChange={(e) => setLength(e.target.value)}
           />
         </div>
